@@ -1,3 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Application 09</string>
+    <string name="app_name">Aplicación Multimedia</string>
+    <string name="app_description">Aplicación de Audio y Grabación</string>
+    
+    <!-- Pantalla de Bienvenida -->
+    <string name="welcome_title">Proyecto de Multimedia</string>
+    <string name="welcome_subtitle">Aplicación de Audio y Grabación</string>
+    <string name="go_to_audio_project">Ir al Proyecto de Audio</string>
+    
+    <!-- Pantalla Principal -->
+    <string name="audio_project_title">Proyecto de Audio</string>
+    <string name="back_button">Volver</string>
+    
+    <!-- Secciones de Audio -->
+    <string name="sound_effects_title">Efectos de Sonido</string>
+    <string name="sound_effects_description">Reproduce tonos cortos con SoundPool</string>
+    <string name="tone_1">Tono 1</string>
+    <string name="tone_2">Tono 2</string>
+    
+    <string name="music_playback_title">Reproducción de Música</string>
+    <string name="music_playback_description">Controla la reproducción de canciones largas</string>
+    <string name="play_song">Reproducir Canción</string>
+    <string name="stop_song">Detener Canción</string>
+    
+    <string name="audio_recording_title">Grabación de Audio</string>
+    <string name="audio_recording_description">Graba conversaciones desde el micrófono</string>
+    <string name="start_recording">Grabar Conversación</string>
+    <string name="stop_recording">Detener Grabación</string>
+    
+    <string name="playback_recording_title">Reproducir Grabación</string>
+    <string name="playback_recording_description">Escucha la grabación realizada</string>
+    <string name="play_recording">Reproducir Grabación</string>
+    <string name="stop_playback">Detener Reproducción</string>
+    
+    <string name="activity_log_title">Registro de Actividad</string>
+    <string name="activity_log_description">Historial de todas las operaciones realizadas</string>
+    
+    <!-- Mensajes del Sistema -->
+    <string name="recording_permission_denied">Permiso para grabar denegado</string>
+    <string name="recording_saved">Grabación guardada</string>
+    
+    <!-- Nombres de Desarrolladores -->
+    <string name="developer_henry">Henry Castro</string>
+    <string name="developer_lissette">Lissette Rodríguez</string>
+    <string name="developer_miguel">Miguel Berroa</string>
+    
+    <!-- Matrículas -->
+    <string name="matricula_henry">1-21-4112</string>
+    <string name="matricula_lissette">1-19-3824</string>
+    <string name="matricula_miguel">2-16-3694</string>
 </resources>
