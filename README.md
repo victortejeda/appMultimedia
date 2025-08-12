@@ -147,9 +147,7 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 ## 👥 Desarrolladores
 
-- **Henry Castro** - 1-21-4112
-- **Lissette Rodríguez** - 1-19-3824  
-- **Miguel Berroa** - 2-16-3694
+- **Victor Tejeda** 
 
 ## 📞 Soporte
 
