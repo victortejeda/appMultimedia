@@ -585,124 +585,133 @@ fun AudioProjectScreen(
             )
         }
     ) { innerPadding ->
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
                 .padding(horizontal = 20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            contentPadding = PaddingValues(bottom = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             // ===== SECCIÓN DE TONOS =====
-            AudioSection(
-                title = "🔊 Efectos de Sonido",
-                description = "Reproduce tonos cortos con SoundPool"
-            ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
+            item {
+                AudioSection(
+                    title = "🔊 Efectos de Sonido",
+                    description = "Reproduce tonos cortos con SoundPool"
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        AudioButton(
+                            text = "Tono 1",
+                            icon = Icons.Default.PlayArrow,
+                            onClick = { viewModel.playSoundPool(1) },
+                            modifier = Modifier.weight(1f)
+                        )
+                        
+                        Spacer(modifier = Modifier.width(12.dp))
+                        
+                        AudioButton(
+                            text = "Tono 2",
+                            icon = Icons.Default.PlayArrow,
+                            onClick = { viewModel.playSoundPool(2) },
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
+                }
+            }
+            
+            // ===== SECCIÓN DE MÚSICA =====
+            item {
+                AudioSection(
+                    title = "🎵 Reproducción de Música",
+                    description = "Controla la reproducción de canciones largas"
                 ) {
                     AudioButton(
-                        text = "Tono 1",
+                        text = if (isMediaPlayerPlaying) "⏹️ Detener Canción" else "▶️ Reproducir Canción",
                         icon = Icons.Default.PlayArrow,
-                        onClick = { viewModel.playSoundPool(1) },
-                        modifier = Modifier.weight(1f)
-                    )
-                    
-                    Spacer(modifier = Modifier.width(12.dp))
-                    
-                    AudioButton(
-                        text = "Tono 2",
-                        icon = Icons.Default.PlayArrow,
-                        onClick = { viewModel.playSoundPool(2) },
-                        modifier = Modifier.weight(1f)
+                        onClick = { viewModel.handleMediaPlayer(context) },
+                        modifier = Modifier.fillMaxWidth(),
+                        enabled = !isRecording && !isPlaybackPlaying,
+                        colors = if (isMediaPlayerPlaying) {
+                            ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
+                        } else {
+                            ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                        }
                     )
                 }
             }
             
-            Spacer(modifier = Modifier.height(20.dp))
-            
-            // ===== SECCIÓN DE MÚSICA =====
-            AudioSection(
-                title = "🎵 Reproducción de Música",
-                description = "Controla la reproducción de canciones largas"
-            ) {
-                AudioButton(
-                    text = if (isMediaPlayerPlaying) "⏹️ Detener Canción" else "▶️ Reproducir Canción",
-                    icon = Icons.Default.PlayArrow,
-                    onClick = { viewModel.handleMediaPlayer(context) },
-                    modifier = Modifier.fillMaxWidth(),
-                    enabled = !isRecording && !isPlaybackPlaying,
-                    colors = if (isMediaPlayerPlaying) {
-                        ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
-                    } else {
-                        ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
-                    }
-                )
-            }
-            
-            Spacer(modifier = Modifier.height(20.dp))
-            
             // ===== SECCIÓN DE GRABACIÓN =====
-            AudioSection(
-                title = "🎤 Grabación de Audio",
-                description = "Graba conversaciones desde el micrófono"
-            ) {
-                AudioButton(
-                    text = if (isRecording) "⏹️ Detener Grabación" else "🎤 Grabar Conversación",
-                    icon = Icons.Default.PlayArrow,
-                    onClick = { onRequestPermission() },
-                    modifier = Modifier.fillMaxWidth(),
-                    enabled = !isMediaPlayerPlaying && !isPlaybackPlaying,
-                    colors = if (isRecording) {
-                        ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
-                    } else {
-                        ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
-                    }
-                )
+            item {
+                AudioSection(
+                    title = "🎤 Grabación de Audio",
+                    description = "Graba conversaciones desde el micrófono"
+                ) {
+                    AudioButton(
+                        text = if (isRecording) "⏹️ Detener Grabación" else "🎤 Grabar Conversación",
+                        icon = Icons.Default.PlayArrow,
+                        onClick = { onRequestPermission() },
+                        modifier = Modifier.fillMaxWidth(),
+                        enabled = !isMediaPlayerPlaying && !isPlaybackPlaying,
+                        colors = if (isRecording) {
+                            ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
+                        } else {
+                            ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                        }
+                    )
+                }
             }
-            
-            Spacer(modifier = Modifier.height(20.dp))
             
             // ===== SECCIÓN DE REPRODUCCIÓN DE GRABACIÓN =====
-            AudioSection(
-                title = "📻 Reproducir Grabación",
-                description = "Escucha la grabación realizada"
-            ) {
-                AudioButton(
-                    text = if (isPlaybackPlaying) "⏹️ Detener Grabación" else "▶️ Reproducir Grabación",
-                    icon = Icons.Default.PlayArrow,
-                    onClick = { viewModel.playRecording(context) },
-                    modifier = Modifier.fillMaxWidth(),
-                    enabled = isRecordingAvailable && !isRecording && !isMediaPlayerPlaying,
-                    colors = if (isPlaybackPlaying) {
-                        ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
-                    } else {
-                        ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
-                    }
-                )
+            item {
+                AudioSection(
+                    title = "📻 Reproducir Grabación",
+                    description = "Escucha la grabación realizada"
+                ) {
+                    AudioButton(
+                        text = if (isPlaybackPlaying) "⏹️ Detener Grabación" else "▶️ Reproducir Grabación",
+                        icon = Icons.Default.PlayArrow,
+                        onClick = { viewModel.playRecording(context) },
+                        modifier = Modifier.fillMaxWidth(),
+                        enabled = isRecordingAvailable && !isRecording && !isMediaPlayerPlaying,
+                        colors = if (isPlaybackPlaying) {
+                            ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
+                        } else {
+                            ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                        }
+                    )
+                }
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
-            
             // ===== SECCIÓN DE LOG =====
-            AudioSection(
-                title = "📋 Registro de Actividad",
-                description = "Historial de todas las operaciones realizadas"
-            ) {
-                LazyColumn(
-                    state = lazyListState,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f)
-                        .padding(vertical = 8.dp)
+            item {
+                AudioSection(
+                    title = "📋 Registro de Actividad",
+                    description = "Historial de todas las operaciones realizadas"
                 ) {
-                    items(logMessages) { message ->
-                        Text(
-                            text = message,
-                            modifier = Modifier.padding(vertical = 2.dp, horizontal = 8.dp),
-                            fontSize = 14.sp,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
+                    LazyColumn(
+                        state = lazyListState,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp),
+                        contentPadding = PaddingValues(vertical = 8.dp),
+                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        items(logMessages) { message ->
+                            Text(
+                                text = message,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 8.dp),
+                                fontSize = 14.sp,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                maxLines = 3,
+                                softWrap = true
+                            )
+                        }
                     }
                 }
             }
