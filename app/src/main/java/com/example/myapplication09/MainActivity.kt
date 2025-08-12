@@ -1,8 +1,4 @@
 package com.example.myapplication09
-
-// ============================================================================
-// IMPORTS NECESARIOS PARA LA APLICACIÓN
-// ============================================================================
 import android.Manifest
 import android.content.ContentValues
 import android.content.Context
@@ -24,17 +20,17 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.MusicNote
-import androidx.compose.material.icons.filled.Stop
-import androidx.compose.material.icons.filled.Mic
+//import androidx.compose.material.icons.filled.MusicNote
+//import androidx.compose.material.icons.filled.Stop
+//import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -54,6 +50,10 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
+
+private val Icons.Filled.MusicNote: ImageVector
+private val Icons.Filled.Mic: ImageVector
+private val Icons.Filled.Stop: ImageVector
 
 // ============================================================================
 // VIEWMODEL PRINCIPAL - MANEJA TODA LA LÓGICA DE AUDIO
