@@ -463,13 +463,24 @@ fun WelcomeScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Título principal
-        Text(
-            text = "🎵 Proyecto de Multimedia",
-            fontSize = 32.sp,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary
-        )
+        // Título principal con icono
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                imageVector = Icons.Default.PlayArrow,
+                contentDescription = null,
+                modifier = Modifier.size(40.dp),
+                tint = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.width(16.dp))
+            Text(
+                text = "Proyecto de Multimedia",
+                fontSize = 32.sp,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary
+            )
+        }
         
         Spacer(modifier = Modifier.height(8.dp))
         
@@ -563,13 +574,24 @@ fun AudioProjectScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { 
+                    TopAppBar(
+            title = { 
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = null,
+                        modifier = Modifier.size(28.dp),
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                    Spacer(modifier = Modifier.width(12.dp))
                     Text(
-                        text = "🎵 Proyecto de Audio",
+                        text = "Proyecto de Audio",
                         fontWeight = FontWeight.Bold
                     )
-                },
+                }
+            },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
@@ -597,8 +619,9 @@ fun AudioProjectScreen(
             // ===== SECCIÓN DE TONOS =====
             item {
                 AudioSection(
-                    title = "🔊 Efectos de Sonido",
-                    description = "Reproduce tonos cortos con SoundPool"
+                    title = "Efectos de Sonido",
+                    description = "Reproduce tonos cortos con SoundPool",
+                    icon = Icons.Default.PlayArrow
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -626,8 +649,9 @@ fun AudioProjectScreen(
             // ===== SECCIÓN DE MÚSICA =====
             item {
                 AudioSection(
-                    title = "🎵 Reproducción de Música",
-                    description = "Controla la reproducción de canciones largas"
+                    title = "Reproducción de Música",
+                    description = "Controla la reproducción de canciones largas",
+                    icon = Icons.Default.PlayArrow
                 ) {
                     AudioButton(
                         text = if (isMediaPlayerPlaying) "⏹️ Detener Canción" else "▶️ Reproducir Canción",
@@ -647,8 +671,9 @@ fun AudioProjectScreen(
             // ===== SECCIÓN DE GRABACIÓN =====
             item {
                 AudioSection(
-                    title = "🎤 Grabación de Audio",
-                    description = "Graba conversaciones desde el micrófono"
+                    title = "Grabación de Audio",
+                    description = "Graba conversaciones desde el micrófono",
+                    icon = Icons.Default.PlayArrow
                 ) {
                     AudioButton(
                         text = if (isRecording) "⏹️ Detener Grabación" else "🎤 Grabar Conversación",
@@ -668,8 +693,9 @@ fun AudioProjectScreen(
             // ===== SECCIÓN DE REPRODUCCIÓN DE GRABACIÓN =====
             item {
                 AudioSection(
-                    title = "📻 Reproducir Grabación",
-                    description = "Escucha la grabación realizada"
+                    title = "Reproducir Grabación",
+                    description = "Escucha la grabación realizada",
+                    icon = Icons.Default.PlayArrow
                 ) {
                     AudioButton(
                         text = if (isPlaybackPlaying) "⏹️ Detener Grabación" else "▶️ Reproducir Grabación",
@@ -689,8 +715,9 @@ fun AudioProjectScreen(
             // ===== SECCIÓN DE LOG =====
             item {
                 AudioSection(
-                    title = "📋 Registro de Actividad",
-                    description = "Historial de todas las operaciones realizadas"
+                    title = "Registro de Actividad",
+                    description = "Historial de todas las operaciones realizadas",
+                    icon = Icons.Default.PlayArrow
                 ) {
                     LazyColumn(
                         state = lazyListState,
@@ -770,12 +797,13 @@ fun AuthorCard(
 }
 
 /**
- * Sección de audio con título y descripción
+ * Sección de audio con título, descripción e icono
  */
 @Composable
 fun AudioSection(
     title: String,
     description: String,
+    icon: ImageVector,
     content: @Composable () -> Unit
 ) {
     Card(
@@ -788,14 +816,24 @@ fun AudioSection(
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
-            Text(
-                text = title,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary
-            )
-            
-            Spacer(modifier = Modifier.height(4.dp))
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(bottom = 8.dp)
+            ) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp),
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Spacer(modifier = Modifier.width(12.dp))
+                Text(
+                    text = title,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
             
             Text(
                 text = description,
