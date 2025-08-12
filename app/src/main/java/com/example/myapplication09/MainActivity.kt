@@ -20,10 +20,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-//import androidx.compose.material.icons.filled.MusicNote
-//import androidx.compose.material.icons.filled.Stop
-//import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -51,9 +49,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
 
-private val Icons.Filled.MusicNote: ImageVector
-private val Icons.Filled.Mic: ImageVector
-private val Icons.Filled.Stop: ImageVector
+// Estas propiedades ya están disponibles a través de Icons.Filled
 
 // ============================================================================
 // VIEWMODEL PRINCIPAL - MANEJA TODA LA LÓGICA DE AUDIO
@@ -607,7 +603,7 @@ fun AudioProjectScreen(
                 ) {
                     AudioButton(
                         text = "Tono 1",
-                        icon = Icons.Default.MusicNote,
+                        icon = Icons.Default.PlayArrow,
                         onClick = { viewModel.playSoundPool(1) },
                         modifier = Modifier.weight(1f)
                     )
@@ -616,7 +612,7 @@ fun AudioProjectScreen(
                     
                     AudioButton(
                         text = "Tono 2",
-                        icon = Icons.Default.MusicNote,
+                        icon = Icons.Default.PlayArrow,
                         onClick = { viewModel.playSoundPool(2) },
                         modifier = Modifier.weight(1f)
                     )
@@ -632,7 +628,7 @@ fun AudioProjectScreen(
             ) {
                 AudioButton(
                     text = if (isMediaPlayerPlaying) "⏹️ Detener Canción" else "▶️ Reproducir Canción",
-                    icon = if (isMediaPlayerPlaying) Icons.Default.Stop else Icons.Default.PlayArrow,
+                    icon = Icons.Default.PlayArrow,
                     onClick = { viewModel.handleMediaPlayer(context) },
                     modifier = Modifier.fillMaxWidth(),
                     enabled = !isRecording && !isPlaybackPlaying,
@@ -653,7 +649,7 @@ fun AudioProjectScreen(
             ) {
                 AudioButton(
                     text = if (isRecording) "⏹️ Detener Grabación" else "🎤 Grabar Conversación",
-                    icon = if (isRecording) Icons.Default.Stop else Icons.Default.Mic,
+                    icon = Icons.Default.PlayArrow,
                     onClick = { onRequestPermission() },
                     modifier = Modifier.fillMaxWidth(),
                     enabled = !isMediaPlayerPlaying && !isPlaybackPlaying,
@@ -674,7 +670,7 @@ fun AudioProjectScreen(
             ) {
                 AudioButton(
                     text = if (isPlaybackPlaying) "⏹️ Detener Grabación" else "▶️ Reproducir Grabación",
-                    icon = if (isPlaybackPlaying) Icons.Default.Stop else Icons.Default.PlayArrow,
+                    icon = Icons.Default.PlayArrow,
                     onClick = { viewModel.playRecording(context) },
                     modifier = Modifier.fillMaxWidth(),
                     enabled = isRecordingAvailable && !isRecording && !isMediaPlayerPlaying,
